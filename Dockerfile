@@ -46,7 +46,7 @@ RUN rm -r /neubiaswg5-utilities
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Install Fiji plugins
-RUN cd /fiji/plugins && wget -O  MorphoLibJ_-1.5.1.jar https://github.com/ijpb/MorphoLibJ/releases/download/v1.5.1/MorphoLibJ_-1.5.1.jar
+RUN cd /fiji/plugins && wget -O MorphoLibJ_-1.5.1.jar https://github.com/ijpb/MorphoLibJ/releases/download/v1.5.1/MorphoLibJ_-1.5.1.jar
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Install Macro
