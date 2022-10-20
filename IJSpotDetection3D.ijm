@@ -27,7 +27,6 @@ for(i=0; i<parts.length; i++) {
 
 setBatchMode(true);
 images = getFileList(inputDir);
-
 for(i=0; i<images.length; i++) {
     image = images[i];
     if (!endsWith(image, ".tif")) continue;
@@ -54,16 +53,17 @@ for(i=0; i<images.length; i++) {
     run("Clear", "stack");
     run("Select None");
     
-    for (i = 0; i < X.length; i++) {
-        x = X[i];
-        y = Y[i];
-        z = Z[i];
+    for (c = 0; c < X.length; c++) {
+        x = X[c];
+        y = Y[c];
+        z = Z[c];
         Stack.setSlice(z);
         setPixel(x, y, 65535);
     }
     // Export results
+    title = getTitle();
     save(outputDir + "/" + image);
-    
+        
     // Cleanup
     run("Close All");
     close(title + "-morpho");
