@@ -1,7 +1,7 @@
 import sys
 from subprocess import call
 from cytomine.models import Job
-from biaflows import CLASS_OBJSEG
+from biaflows import CLASS_SPTCNT
 from biaflows.helpers import BiaflowsJob, prepare_data, upload_data, upload_metrics
 
 
