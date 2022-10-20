@@ -1,12 +1,12 @@
 {
-    "name": "SpotDetection3D-IJ",
+    "name": "SpotDetection3D-IJ-TopHat",
     "container-image": {
-        "image": "neubiaswg5/w_spotdetection3d-ij",
+        "image": "volkerbaecker/w_spotdetection3dijtophat",
         "type": "singularity"
     },
     "schema-version": "cytomine-0.1",
-    "description": "3D spot detection using a LoG filter and the detection of minima.",
-    "command-line": "python wrapper.py CYTOMINE_HOST CYTOMINE_PUBLIC_KEY CYTOMINE_PRIVATE_KEY CYTOMINE_ID_PROJECT CYTOMINE_ID_SOFTWARE IJ_RADIUS IJ_THRESHOLD",
+    "description": "3D spot detection using a top hat filter and the detection of maxima.",
+    "command-line": "python wrapper.py CYTOMINE_HOST CYTOMINE_PUBLIC_KEY CYTOMINE_PRIVATE_KEY CYTOMINE_ID_PROJECT CYTOMINE_ID_SOFTWARE FILTER_XY FILTER_Z TOP_HAT_XY TOP_HAT_Z, DYNAMIC, CONNECTIVITY",
     "inputs": [
         {
             "id": "cytomine_host",
@@ -59,24 +59,64 @@
             "set-by-server": true
         },
         {
-            "id": "ij_radius",
+            "id": "filter_xy",
             "value-key": "@ID",
             "command-line-flag": "--@id",
-            "name": "Radius",
-            "description": "Radius for Gaussian smoothing",
+            "name": "Radius xy",
+            "description": "Radius for the Median-filter in the x-y-plane",
             "type": "Number",
-            "default-value": 2.5,
+            "default-value": 1,
             "optional": true
         },
         {
-            "id": "ij_threshold",
+            "id": "filter_z",
             "value-key": "@ID",
             "command-line-flag": "--@id",
-            "name": "Threshold",
-            "description": "Threshold",
+            "name": "Radius z",
+            "description": "Radius for the Median-filter along the z-axis",
             "type": "Number",
-            "default-value": -2,
+            "default-value": 0.5,
             "optional": true
-        }
+        },
+        {
+            "id": "top_hat_xy",
+            "value-key": "@ID",
+            "command-line-flag": "--@id",
+            "name": "SE size xy",
+            "description": "Radius of the SE in the x-y-plane",
+            "type": "Number",
+            "default-value": 7.5,
+            "optional": true
+        },
+        {
+            "id": "top_hat_z",
+            "value-key": "@ID",
+            "command-line-flag": "--@id",
+            "name": "SE size z",
+            "description": "Radius of the SE along the z-axis",
+            "type": "Number",
+            "default-value": 3.5,
+            "optional": true
+        },
+        {
+            "id": "dynamic",
+            "value-key": "@ID",
+            "command-line-flag": "--@id",
+            "name": "Dynamic",
+            "description": "Dynamic of local maxima",
+            "type": "Number",
+            "default-value": 75,
+            "optional": true
+        },
+        {
+            "id": "connectivity",
+            "value-key": "@ID",
+            "command-line-flag": "--@id",
+            "name": "Connectivity",
+            "description": "3D connectivity (6 or 26)",
+            "type": "Number",
+            "default-value": 6,
+            "optional": true
+        },
     ]
 }
