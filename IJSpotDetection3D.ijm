@@ -10,6 +10,7 @@ top_hat_radius_z = 3.5;
 dynamic = 75;
 connectivity = 6;
 
+// Read command-line parameters, if any
 arg = getArgument();
 parts = split(arg, ",");
 
@@ -25,12 +26,14 @@ for(i=0; i<parts.length; i++) {
     if (indexOf(nameAndValue[0], "connectivity") > -1) connectivity  = nameAndValue[1];
 }
 
+// batch process images in the input folder
 setBatchMode(true);
 images = getFileList(inputDir);
 for(i=0; i<images.length; i++) {
     image = images[i];
     if (!endsWith(image, ".tif")) continue;
     open(inputDir + "/" + image);
+    // the bio-image analysis workflow
     run("Set Scale...", "distance=0 known=0 pixel=1 unit=pixel");
     getDimensions(width, height, channels, slices, frames);
     Stack.setSlice(1);
@@ -44,6 +47,7 @@ for(i=0; i<images.length; i++) {
     run("Extended Min & Max 3D", "operation=[Extended Maxima] dynamic="+dynamic+" connectivity="+connectivity);
     run("Connected Components Labeling", "connectivity="+connectivity+" type=[16 bits]");
     run("Analyze Regions 3D", "centroid surface_area_method=[Crofton (13 dirs.)] euler_connectivity=6");
+    // Create the output image
     columnNames = split(Table.headings, "\t");
     X = Table.getColumn(columnNames[1]);
     Y = Table.getColumn(columnNames[2]);
@@ -68,4 +72,5 @@ for(i=0; i<images.length; i++) {
     run("Close All");
     close(title + "-morpho");
 }
+// Quit the jvm process
 run("Quit");
