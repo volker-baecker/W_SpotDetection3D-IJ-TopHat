@@ -19,6 +19,6 @@ jobs:
       id: vars
       run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
     - name: show
-      run: echo  ${{ env.REPOSITORY_NAME }}/${{ env.REPOSITORY_NAME }}:${{ steps.vars.outputs.tag }}
+      run: echo  ${{ env.USER_NAME }}/${{ env.REPOSITORY_NAME }}:${{ steps.vars.outputs.tag }}
 
     
