@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - run: echo "REPOSITORY_NAME=${{github.repository}}" >> $GITHUB_ENV
+    - run: echo "REPOSITORY_NAME=${{github.repository}} | awk 'print tolower($0)'" >> $GITHUB_ENV
       shell: bash
     - name: Get the version
       id: vars
