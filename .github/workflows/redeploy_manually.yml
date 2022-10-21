@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - run: echo "REPOSITORY_NAME=$(echo'volkerbaecker/w_spotdetection3d-ij-tophat')" >> $GITHUB_ENV
+    - run: echo "REPOSITORY_NAME=$(echo 'volkerbaecker/w_spotdetection3d-ij-tophat')" >> $GITHUB_ENV
       shell: bash
     - name: Get the version
       id: vars
