@@ -1,7 +1,7 @@
 {
     "name": "SpotDetection3D-IJ-TopHat",
     "container-image": {
-        "image": "volkerbaecker/w_spotdetection3dijtophat",
+        "image": "volkerbaecker/w_spotdetection3d-ij-tophat",
         "type": "singularity"
     },
     "schema-version": "cytomine-0.1",
